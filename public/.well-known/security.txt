@@ -1,0 +1,6 @@
+Contact: security@ranking.ir
+Expires: 2025-07-05T00:00:00.000Z
+Preferred-Languages: fa, en
+Canonical: https://ranking.ir/.well-known/security.txt
+Policy: https://ranking.ir/privacy
+Acknowledgments: https://ranking.ir/contact

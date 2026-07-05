@@ -1,0 +1,34 @@
+# Ranking.ir SEO Robots Configuration
+# Allow all search engines to crawl and index
+
+User-agent: *
+Allow: /
+Disallow: /sign-in
+Disallow: /sign-up
+Disallow: /dashboard
+Disallow: /*.json$
+Disallow: /*.json?*
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /api/
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Yandex specific (for Iranian market)
+User-agent: Yandex
+Allow: /
+Crawl-delay: 0
+
+# Sitemap location
+Sitemap: https://ranking.ir/sitemap.xml
+
+# Cache and delay settings
+Request-rate: 30/60
