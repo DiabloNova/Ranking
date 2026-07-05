@@ -82,9 +82,8 @@ export function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
+                    className="footer-link"
                     style={{ fontSize: '0.875rem', color: 'var(--muted)', transition: 'color 0.2s' }}
-                    onMouseEnter={(e) => { (e.target as HTMLElement).style.color = 'var(--primary)' }}
-                    onMouseLeave={(e) => { (e.target as HTMLElement).style.color = 'var(--muted)' }}
                   >
                     {l.label}
                   </Link>
@@ -103,9 +102,8 @@ export function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
+                    className="footer-link"
                     style={{ fontSize: '0.875rem', color: 'var(--muted)', transition: 'color 0.2s' }}
-                    onMouseEnter={(e) => { (e.target as HTMLElement).style.color = 'var(--primary)' }}
-                    onMouseLeave={(e) => { (e.target as HTMLElement).style.color = 'var(--muted)' }}
                   >
                     {l.label}
                   </Link>
@@ -124,9 +122,8 @@ export function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
+                    className="footer-link"
                     style={{ fontSize: '0.875rem', color: 'var(--muted)', transition: 'color 0.2s' }}
-                    onMouseEnter={(e) => { (e.target as HTMLElement).style.color = 'var(--primary)' }}
-                    onMouseLeave={(e) => { (e.target as HTMLElement).style.color = 'var(--muted)' }}
                   >
                     {l.label}
                   </Link>
