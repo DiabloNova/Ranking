@@ -23,23 +23,6 @@ The website has been analyzed for Performance, SEO, and Accessibility. Key findi
 - ✅ **Contrast:** Increased contrast for `--muted` text in both light and dark themes to meet WCAG AA standards.
 - ✅ **ARIA Labels:** Added descriptive labels to buttons and links for screen readers.
 
-## Vercel Deployment Checklist & Best Practices
-
-If you encounter build errors on Vercel, check the following:
-
-### 1. Common Build Issues
-- **Case-Sensitive Imports:** Ensure all `import` paths exactly match the file system casing (e.g., `@/components/Navbar` vs `@/components/navbar`). Linux-based build environments (like Vercel) are case-sensitive.
-- **Environment Variables:** Verify that `DATABASE_URL`, `BETTER_AUTH_SECRET`, and any other required variables are set in the Vercel project settings.
-- **Strict Type Checking:** If TypeScript errors block your build, you can set `typescript: { ignoreBuildErrors: true }` in `next.config.mjs` (already applied).
-- **ESLint Failures:** Circular dependencies or linting errors can stop a build. Set `eslint: { ignoreDuringBuilds: true }` (already applied) to bypass this during deployment.
-
-### 2. Dependency Management
-- **pnpm vs npm:** This project uses `pnpm`. Ensure Vercel is configured to use pnpm for installation.
-- **Locked Versions:** If `pg` or other native modules cause issues, try pinning them to a stable version (e.g., `pg@8.12.0`).
-
-### 3. API & Proxy Configuration
-- The SEO analyzer uses an internal proxy route at `/api/proxy`. Ensure this route is not blocked by middleware and that the `User-Agent` is properly set to avoid being blocked by target websites.
-
 ## Future Recommendations
 
 1. **Content Strategy:** Regularly update the site with SEO-optimized blog posts focusing on the Iranian market.

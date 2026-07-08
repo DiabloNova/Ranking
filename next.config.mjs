@@ -87,13 +87,6 @@ const nextConfig = {
   compress: true,
   productionBrowserSourceMaps: false,
   
-  // Build time safety
-  typescript: {
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    ignoreBuildErrors: true,
-  },
-
   // SWR Cache
   onDemandEntries: {
     maxInactiveAge: 25 * 1000,
