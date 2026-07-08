@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { Menu, X, Sun, Moon } from 'lucide-react'
+import { SearchToggle } from './search-toggle'
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme()
@@ -55,7 +56,8 @@ export function Navbar() {
           </div>
 
           {/* Desktop actions */}
-          <div className="hidden md:flex items-center gap-3 flex-shrink-0">
+          <div className="hidden md:flex items-center gap-3 flex-shrink-0 relative">
+            <SearchToggle />
             <ThemeToggle />
             <Link href="/sign-in" className="btn-ghost text-sm px-3 py-2">
               ورود
