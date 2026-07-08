@@ -1,7 +1,26 @@
 'use client'
 
 import Link from 'next/link'
+import { useState } from 'react'
 import { MapPin, Phone, Mail, Share2 } from 'lucide-react'
+
+const FooterLink = ({ href, label }: { href: string; label: string }) => {
+  const [isHovered, setIsHovered] = useState(false)
+  return (
+    <Link
+      href={href}
+      style={{
+        fontSize: '0.875rem',
+        color: isHovered ? 'var(--primary)' : 'var(--muted)',
+        transition: 'color 0.2s',
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {label}
+    </Link>
+  )
+}
 
 const footerLinks = {
   product: [
@@ -80,13 +99,7 @@ export function Footer() {
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', listStyle: 'none', padding: 0 }}>
               {footerLinks.product.map((l) => (
                 <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="footer-link"
-                    style={{ fontSize: '0.875rem', color: 'var(--muted)', transition: 'color 0.2s' }}
-                  >
-                    {l.label}
-                  </Link>
+                  <FooterLink href={l.href} label={l.label} />
                 </li>
               ))}
             </ul>
@@ -100,13 +113,7 @@ export function Footer() {
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', listStyle: 'none', padding: 0 }}>
               {footerLinks.company.map((l) => (
                 <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="footer-link"
-                    style={{ fontSize: '0.875rem', color: 'var(--muted)', transition: 'color 0.2s' }}
-                  >
-                    {l.label}
-                  </Link>
+                  <FooterLink href={l.href} label={l.label} />
                 </li>
               ))}
             </ul>
@@ -120,13 +127,7 @@ export function Footer() {
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', listStyle: 'none', padding: 0, marginBottom: '1.25rem' }}>
               {footerLinks.legal.map((l) => (
                 <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="footer-link"
-                    style={{ fontSize: '0.875rem', color: 'var(--muted)', transition: 'color 0.2s' }}
-                  >
-                    {l.label}
-                  </Link>
+                  <FooterLink href={l.href} label={l.label} />
                 </li>
               ))}
             </ul>

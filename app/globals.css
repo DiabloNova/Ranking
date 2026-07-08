@@ -367,14 +367,6 @@ a:hover { opacity: 0.82; }
 }
 .nav-link:hover { color: var(--primary); background: var(--border); opacity: 1; }
 
-/* ─── Footer link ───────────────────────────────────────────── */
-.footer-link {
-  color: var(--muted);
-  transition: color 0.2s ease;
-  display: inline-block;
-}
-.footer-link:hover { color: var(--primary); }
-
 /* ─── Section heading label ─────────────────────────────────── */
 .section-label {
   display: inline-flex;
