@@ -16,14 +16,19 @@ export function AnalyzerClient() {
     setResult(null)
 
     try {
+      let normalizedUrl = url.trim()
+      if (!normalizedUrl.startsWith('http://') && !normalizedUrl.startsWith('https://')) {
+        normalizedUrl = `https://${normalizedUrl}`
+      }
+
       let parsedUrl: URL
       try {
-        parsedUrl = new URL(url)
+        parsedUrl = new URL(normalizedUrl)
       } catch {
         throw new Error('آدرس URL نامعتبر است. مثال: https://example.com')
       }
 
-      const response = await fetch(`/api/proxy?url=${encodeURIComponent(url)}`)
+      const response = await fetch(`/api/proxy?url=${encodeURIComponent(normalizedUrl)}`)
       if (!response.ok) throw new Error('سایت قابل دسترس نیست یا اجازه دسترسی نمی‌دهد')
 
       const htmlContent = await response.text()
@@ -59,7 +64,7 @@ export function AnalyzerClient() {
       if (imagesNoAlt === 0 && imageCount > 0) score += 5
 
       setResult({
-        url, title: title || 'یافت نشد', description: description || 'یافت نشد',
+        url: normalizedUrl, title: title || 'یافت نشد', description: description || 'یافت نشد',
         h1Count, h2Count, imageCount, imagesNoAlt, hasSsl, isMobileReady,
         hasCanonical, hasOG, hasSchema, isIndexable,
         score: Math.min(100, score),
@@ -110,7 +115,7 @@ export function AnalyzerClient() {
               <Search size={18} style={{ color: 'var(--muted)', flexShrink: 0 }} aria-hidden="true" />
               <input
                 id="analyze-url"
-                type="url"
+                type="text"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder="https://example.com"
