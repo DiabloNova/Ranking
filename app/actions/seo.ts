@@ -7,6 +7,7 @@ import { eq } from 'drizzle-orm'
 import { headers } from 'next/headers'
 import { revalidatePath } from 'next/cache'
 import { v4 as uuidv4 } from 'uuid'
+import { JSDOM } from 'jsdom'
 
 async function getUserId() {
   const session = await auth.api.getSession({ headers: await headers() })
@@ -42,8 +43,8 @@ export async function analyzeWebsite(websiteUrl: string) {
   }
 
   // Parse HTML
-  const parser = new DOMParser()
-  const doc = parser.parseFromString(htmlContent, 'text/html')
+  const dom = new JSDOM(htmlContent)
+  const doc = dom.window.document
 
   // Extract metadata
   const title = doc.querySelector('title')?.textContent || ''

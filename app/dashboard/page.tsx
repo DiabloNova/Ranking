@@ -113,7 +113,12 @@ export default function DashboardPage() {
                 aria-label="آدرس سایت برای تحلیل"
               />
             </div>
-            <button type="submit" disabled={analyzing} className="btn-primary">
+            <button
+              type="submit"
+              disabled={analyzing}
+              className="btn-primary"
+              aria-label={analyzing ? 'در حال تحلیل سایت' : 'شروع تحلیل جدید'}
+            >
               {analyzing
                 ? <><Loader size={15} className="animate-spin" /> در حال تحلیل...</>
                 : <><Plus size={16} /> تحلیل</>}
