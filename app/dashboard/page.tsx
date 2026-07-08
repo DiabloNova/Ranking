@@ -39,11 +39,7 @@ export default function DashboardPage() {
     setAnalyzing(true)
     setError('')
     try {
-      let normalizedUrl = url.trim()
-      if (!normalizedUrl.startsWith('http://') && !normalizedUrl.startsWith('https://')) {
-        normalizedUrl = `https://${normalizedUrl}`
-      }
-      const result = await analyzeWebsite(normalizedUrl)
+      const result = await analyzeWebsite(url)
       setAnalyses([result, ...analyses])
       setUrl('')
     } catch (err) {
@@ -109,7 +105,7 @@ export default function DashboardPage() {
             <div className="search-bar" style={{ flex: 1, minWidth: '240px' }}>
               <Search size={16} style={{ color: 'var(--muted)', flexShrink: 0 }} aria-hidden="true" />
               <input
-                type="text"
+                type="url"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder="https://example.com"
