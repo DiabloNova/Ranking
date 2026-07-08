@@ -46,9 +46,32 @@ const values = [
   },
 ]
 
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'خانه',
+      item: 'https://ranking.ir',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'درباره ما',
+      item: 'https://ranking.ir/about',
+    },
+  ],
+}
+
 export default function AboutPage() {
   return (
     <div style={{ backgroundColor: 'var(--bg)', minHeight: '100vh' }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
 
       {/* Header */}
       <section style={{ padding: '5rem 0 4rem', textAlign: 'center', borderBottom: '1px solid var(--border)' }}>

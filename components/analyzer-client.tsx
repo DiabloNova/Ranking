@@ -128,6 +128,7 @@ export function AnalyzerClient() {
               disabled={loading}
               className="btn-primary"
               style={{ padding: '0.85rem 1.75rem', fontSize: '1rem' }}
+              aria-label={loading ? 'در حال تحلیل سایت' : 'شروع تحلیل سایت'}
             >
               {loading
                 ? <><span className="animate-spin" style={{ display: 'inline-block', width: 16, height: 16, border: '2px solid #fff', borderTopColor: 'transparent', borderRadius: '50%' }} /> تحلیل...</>

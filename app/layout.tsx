@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://ranking.ir'),
   title: {
     default: 'رنکینگ | خدمات تخصصی سئو در ایران - افزایش رتبه گوگل',
-    template: '%s | رنکینگ',
+    template: '%s',
   },
   description:
     'رنکینگ متخصص سئو در ایران. خدمات بهینه‌سازی موتور جستجو، تحلیل رایگان سایت، سئو تکنیکال، سئو محلی و افزایش ترافیک ارگانیک. ۹۰۰+ مشتری راضی و ۵۰۰ پروژه موفق.',
@@ -23,7 +23,6 @@ export const metadata: Metadata = {
   creator: 'رنکینگ',
   publisher: 'رنکینگ',
   category: 'technology',
-  metadataBase: new URL('https://ranking.ir'),
   alternates: {
     canonical: 'https://ranking.ir',
     languages: {
@@ -41,11 +40,11 @@ export const metadata: Metadata = {
     emails: ['info@ranking.ir'],
     images: [
       {
-        url: 'https://ranking.ir/og-image.png',
-        width: 1200,
-        height: 630,
+        url: 'https://ranking.ir/logo.webp',
+        width: 800,
+        height: 400,
         alt: 'رنکینگ - خدمات سئو حرفه‌ای در ایران',
-        type: 'image/png',
+        type: 'image/webp',
       },
     ],
   },
@@ -53,7 +52,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'رنکینگ | خدمات تخصصی سئو در ایران',
     description: 'افزایش رتبه سایت شما در گوگل با خدمات سئو حرفه‌ای و داده‌محور.',
-    images: ['https://ranking.ir/og-image.png'],
+    images: ['https://ranking.ir/logo.webp'],
     creator: '@ranking_seo',
   },
   robots: {
@@ -113,7 +112,7 @@ const organizationSchema = {
   url:        'https://ranking.ir',
   logo: {
     '@type':       'ImageObject',
-    url:           'https://ranking.ir/og-image.png',
+    url:           'https://ranking.ir/logo.webp',
     width:         '512',
     height:        '512',
   },
@@ -131,8 +130,22 @@ const organizationSchema = {
     telephone:          '+98-21-91212345',
     contactType:        'customer service',
     areaServed:         'IR',
-    availableLanguage:  'Persian',
+    availableLanguage:  ['Persian', 'English'],
   },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Saturday', 'Sunday'],
+      opens: '08:00',
+      closes: '17:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Friday',
+      opens: '08:00',
+      closes: '13:00',
+    }
+  ],
   sameAs: [
     'https://instagram.com/ranking_seo',
     'https://t.me/ranking_seo',
@@ -177,14 +190,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="رنکینگ" />
         
+        {/* Font Preloading for Performance */}
+        <link
+          rel="preload"
+          href="/fonts/Peyda-Regular.ttf"
+          as="font"
+          type="font/truetype"
+          crossOrigin="anonymous"
+        />
+
         {/* DNS Prefetch for Performance */}
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        
-        {/* Preconnect */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
         {/* App Links */}
         <link rel="manifest" href="/manifest.json" />

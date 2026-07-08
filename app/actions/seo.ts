@@ -7,6 +7,7 @@ import { eq } from 'drizzle-orm'
 import { headers } from 'next/headers'
 import { revalidatePath } from 'next/cache'
 import { v4 as uuidv4 } from 'uuid'
+import * as cheerio from 'cheerio'
 
 async function getUserId() {
   const session = await auth.api.getSession({ headers: await headers() })
@@ -42,46 +43,46 @@ export async function analyzeWebsite(websiteUrl: string) {
   }
 
   // Parse HTML
-  const parser = new DOMParser()
-  const doc = parser.parseFromString(htmlContent, 'text/html')
+  const $ = cheerio.load(htmlContent)
 
   // Extract metadata
-  const title = doc.querySelector('title')?.textContent || ''
-  const metaDescription =
-    doc.querySelector('meta[name="description"]')?.getAttribute('content') || ''
-  const metaKeywords =
-    doc.querySelector('meta[name="keywords"]')?.getAttribute('content') || ''
+  const title = $('title').text() || ''
+  const metaDescription = $('meta[name="description"]').attr('content') || ''
+  const metaKeywords = $('meta[name="keywords"]').attr('content') || ''
 
   // Count headings
-  const h1Count = doc.querySelectorAll('h1').length
-  const h2Count = doc.querySelectorAll('h2').length
-  const h3Count = doc.querySelectorAll('h3').length
+  const h1Count = $('h1').length
+  const h2Count = $('h2').length
+  const h3Count = $('h3').length
 
   // Check images alt text
-  const images = doc.querySelectorAll('img')
+  const images = $('img')
   let imagesWithAlt = 0
-  images.forEach((img) => {
-    if (img.getAttribute('alt')) imagesWithAlt++
+  images.each((_, img) => {
+    if ($(img).attr('alt')) imagesWithAlt++
   })
   const imageAltPercentage = images.length > 0 ? (imagesWithAlt / images.length) * 100 : 0
 
   // Count links
-  const internalLinks = Array.from(doc.querySelectorAll('a')).filter((a) => {
-    const href = a.getAttribute('href') || ''
-    return href.startsWith('/') || href.includes(parsedUrl.hostname)
-  }).length
+  const links = $('a')
+  let internalLinks = 0
+  let externalLinks = 0
 
-  const externalLinks = Array.from(doc.querySelectorAll('a')).filter((a) => {
-    const href = a.getAttribute('href') || ''
-    return href.startsWith('http') && !href.includes(parsedUrl.hostname)
-  }).length
+  links.each((_, a) => {
+    const href = $(a).attr('href') || ''
+    if (href.startsWith('/') || href.includes(parsedUrl.hostname)) {
+      internalLinks++
+    } else if (href.startsWith('http')) {
+      externalLinks++
+    }
+  })
 
   // Check SSL
   const hasSsl = parsedUrl.protocol === 'https:'
 
   // Check mobile viewport
-  const viewportMeta = doc.querySelector('meta[name="viewport"]')
-  const isMobileReady = !!viewportMeta
+  const viewportMeta = $('meta[name="viewport"]')
+  const isMobileReady = viewportMeta.length > 0
 
   // Calculate score (0-100)
   let score = 50
@@ -108,8 +109,8 @@ export async function analyzeWebsite(websiteUrl: string) {
     mobileReady: isMobileReady,
     sslCertificate: hasSsl,
     metaTags: JSON.stringify({
-      charset: doc.querySelector('meta[charset]')?.getAttribute('charset'),
-      viewport: viewportMeta?.getAttribute('content'),
+      charset: $('meta[charset]').attr('charset'),
+      viewport: viewportMeta.attr('content'),
     }),
     imageAlt: imageAltPercentage > 80,
     internalLinks,
