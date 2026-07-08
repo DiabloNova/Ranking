@@ -4,57 +4,6 @@ import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { ThemeProvider } from '@/components/theme-provider'
 
-const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type':    'Organization',
-  '@id':      'https://ranking.ir/#organization',
-  name:       'رنکینگ',
-  url:        'https://ranking.ir',
-  logo: {
-    '@type':       'ImageObject',
-    url:           'https://ranking.ir/og-image.png',
-    width:         '512',
-    height:        '512',
-  },
-  description:      'ارائه خدمات تخصصی سئو، بهینه‌سازی موتور جستجو و افزایش ترافیک ارگانیک در ایران',
-  foundingDate:     '2020',
-  foundingLocation: { '@type': 'Place', name: 'Tehran, Iran' },
-  address: {
-    '@type':           'PostalAddress',
-    addressLocality:   'Tehran',
-    addressRegion:     'Tehran',
-    addressCountry:    'IR',
-  },
-  contactPoint: {
-    '@type':            'ContactPoint',
-    telephone:          '+98-21-91212345',
-    contactType:        'customer service',
-    areaServed:         'IR',
-    availableLanguage:  'Persian',
-  },
-  sameAs: [
-    'https://instagram.com/ranking_seo',
-    'https://t.me/ranking_seo',
-    'https://linkedin.com/company/ranking-ir',
-  ],
-}
-
-const websiteSchema = {
-  '@context':       'https://schema.org',
-  '@type':          'WebSite',
-  '@id':            'https://ranking.ir/#website',
-  url:              'https://ranking.ir',
-  name:             'رنکینگ',
-  description:      'خدمات تخصصی سئو در ایران',
-  publisher:        { '@id': 'https://ranking.ir/#organization' },
-  inLanguage:       'fa-IR',
-  potentialAction: {
-    '@type':       'SearchAction',
-    target:        { '@type': 'EntryPoint', urlTemplate: 'https://ranking.ir/analyzer?url={search_term_string}' },
-    'query-input': 'required name=search_term_string',
-  },
-}
-
 export const metadata: Metadata = {
   metadataBase: new URL('https://ranking.ir'),
   title: {
@@ -74,6 +23,7 @@ export const metadata: Metadata = {
   creator: 'رنکینگ',
   publisher: 'رنکینگ',
   category: 'technology',
+  metadataBase: new URL('https://ranking.ir'),
   alternates: {
     canonical: 'https://ranking.ir',
     languages: {
@@ -155,6 +105,57 @@ export const viewport: Viewport = {
   ],
 }
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type':    'Organization',
+  '@id':      'https://ranking.ir/#organization',
+  name:       'رنکینگ',
+  url:        'https://ranking.ir',
+  logo: {
+    '@type':       'ImageObject',
+    url:           'https://ranking.ir/og-image.png',
+    width:         '512',
+    height:        '512',
+  },
+  description:      'ارائه خدمات تخصصی سئو، بهینه‌سازی موتور جستجو و افزایش ترافیک ارگانیک در ایران',
+  foundingDate:     '2020',
+  foundingLocation: { '@type': 'Place', name: 'Tehran, Iran' },
+  address: {
+    '@type':           'PostalAddress',
+    addressLocality:   'Tehran',
+    addressRegion:     'Tehran',
+    addressCountry:    'IR',
+  },
+  contactPoint: {
+    '@type':            'ContactPoint',
+    telephone:          '+98-21-91212345',
+    contactType:        'customer service',
+    areaServed:         'IR',
+    availableLanguage:  'Persian',
+  },
+  sameAs: [
+    'https://instagram.com/ranking_seo',
+    'https://t.me/ranking_seo',
+    'https://linkedin.com/company/ranking-ir',
+  ],
+}
+
+const websiteSchema = {
+  '@context':       'https://schema.org',
+  '@type':          'WebSite',
+  '@id':            'https://ranking.ir/#website',
+  url:              'https://ranking.ir',
+  name:             'رنکینگ',
+  description:      'خدمات تخصصی سئو در ایران',
+  publisher:        { '@id': 'https://ranking.ir/#organization' },
+  inLanguage:       'fa-IR',
+  potentialAction: {
+    '@type':       'SearchAction',
+    target:        { '@type': 'EntryPoint', urlTemplate: 'https://ranking.ir/analyzer?url={search_term_string}' },
+    'query-input': 'required name=search_term_string',
+  },
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
@@ -189,6 +190,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#f2faff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#0a0e1a" media="(prefers-color-scheme: dark)" />
+        
+        {/* Schema.org Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
       </head>
       <body className="antialiased min-h-screen flex flex-col">
         <ThemeProvider

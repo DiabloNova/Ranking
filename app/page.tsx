@@ -52,37 +52,31 @@ const features = [
     icon: <BarChart3 size={24} />,
     title: 'تحلیل جامع رایگان',
     description: 'بررسی کامل سایت شامل فاکتورهای تکنیکی، محتوایی و بک‌لینک‌ها — کاملاً رایگان و فوری.',
-    href: '/services/analysis',
   },
   {
     icon: <Shield size={24} />,
     title: 'سئو تکنیکال',
     description: 'بهینه‌سازی ساختار فنی سایت، سرعت صفحه، Core Web Vitals و قابلیت ایندکس‌شدن.',
-    href: '/services/technical-seo',
   },
   {
     icon: <Globe size={24} />,
     title: 'سئو محلی در ایران',
     description: 'حضور پررنگ در نتایج محلی گوگل برای مشتریان ایرانی. بهینه‌سازی گوگل مپ و لوکال پک.',
-    href: '/services/local-seo',
   },
   {
     icon: <TrendingUp size={24} />,
     title: 'نتایج تضمین‌شده',
     description: 'افزایش ترافیک ارگانیک در ۹۰ روز. اگر نتیجه نگرفتید، پول کامل برمی‌گردد.',
-    href: '/services/guaranteed-results',
   },
   {
     icon: <Search size={24} />,
     title: 'تحقیق کلمه کلیدی',
     description: 'شناسایی کلمات کلیدی پرجستجو و کم‌رقابت برای بازار ایران با ابزارهای تخصصی.',
-    href: '/services/keyword-research',
   },
   {
     icon: <Zap size={24} />,
     title: 'گزارش‌دهی شفاف',
     description: 'داشبورد زنده با متریک‌های دقیق. هر هفته گزارش پیشرفت دریافت کنید.',
-    href: '/services/reporting',
   },
 ]
 
@@ -223,7 +217,7 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map((f, i) => (
-              <Link key={i} href={f.href} className="card" style={{ padding: '1.5rem', display: 'block', textDecoration: 'none', transition: 'all 0.3s ease', cursor: 'pointer' }}>
+              <article key={i} className="card" style={{ padding: '1.5rem' }}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                   <div className="icon-box" aria-hidden="true">{f.icon}</div>
                   <div style={{ flex: 1 }}>
@@ -235,7 +229,7 @@ export default function HomePage() {
                     </p>
                   </div>
                 </div>
-              </Link>
+              </article>
             ))}
           </div>
         </div>

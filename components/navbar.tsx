@@ -25,11 +25,9 @@ function ThemeToggle() {
 
 const navLinks = [
   { href: '/',         label: 'خانه' },
-  { href: '/pricing',  label: 'تعرفه خدمات' },
   { href: '/about',    label: 'درباره ما' },
   { href: '/analyzer', label: 'ابزار تحلیل' },
   { href: '/contact',  label: 'تماس با ما' },
-  { href: '#',         label: 'ثبت نام / ورود' },
 ]
 
 export function Navbar() {
