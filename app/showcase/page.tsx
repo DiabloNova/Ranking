@@ -116,10 +116,8 @@ export default function ShowcasePage() {
                 </p>
                 <div className="mt-8">
                   <GlassModal>
-                    <GlassModalTrigger asChild>
-                        <GlassButton variant="primary" className="w-full">
-                            مشاهده جزئیات
-                        </GlassButton>
+                    <GlassModalTrigger render={<GlassButton variant="primary" className="w-full" />}>
+                        مشاهده جزئیات
                     </GlassModalTrigger>
                     <GlassModalContent>
                       <GlassModalHeader>

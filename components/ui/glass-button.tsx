@@ -50,15 +50,15 @@ const glassButtonVariants = cva(
 export interface GlassButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof glassButtonVariants> {
-  asChild?: boolean
+  render?: React.ReactElement | ((props: any, state: any) => React.ReactElement)
 }
 
 const GlassButton = React.forwardRef<HTMLButtonElement, GlassButtonProps>(
-  ({ className, variant, size, asChild, ...props }, ref) => {
+  ({ className, variant, size, render, ...props }, ref) => {
     return (
       <ButtonPrimitive
         ref={ref}
-        asChild={asChild}
+        render={render}
         className={cn(glassButtonVariants({ variant, size, className }), "group")}
         {...props}
       >
