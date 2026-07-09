@@ -33,6 +33,76 @@
 /* ─── Tailwind font token ───────────────────────────────────── */
 @theme inline {
   --font-sans: 'Peyda', system-ui, sans-serif;
+
+  --color-glass-bg: rgba(255, 255, 255, 0.03);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+
+  --shadow-liquid:
+    inset 0 2px 4px 0 rgba(255, 255, 255, 0.6),
+    0 4px 12px 0 rgba(0, 0, 0, 0.1),
+    0 12px 24px -4px rgba(0, 0, 0, 0.15);
+
+  --shadow-liquid-hover:
+    inset 0 4px 8px 0 rgba(255, 255, 255, 0.8),
+    0 8px 24px 0 rgba(0, 0, 0, 0.15),
+    0 20px 40px -8px rgba(0, 0, 0, 0.25);
+
+  --shadow-liquid-dark:
+    inset 0 2px 4px 0 rgba(255, 255, 255, 0.2),
+    0 4px 12px 0 rgba(0, 0, 0, 0.4),
+    0 12px 24px -4px rgba(0, 0, 0, 0.5);
+
+  --shadow-liquid-dark-hover:
+    inset 0 4px 8px 0 rgba(255, 255, 255, 0.3),
+    0 8px 24px 0 rgba(0, 0, 0, 0.5),
+    0 20px 40px -8px rgba(0, 0, 0, 0.7);
+}
+
+@utility glass-liquid {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
+  backdrop-filter: blur(32px);
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-liquid);
+}
+
+@utility glass-liquid-dark {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  backdrop-filter: blur(32px);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+  box-shadow: var(--shadow-liquid-dark);
+}
+
+@utility glass-holographic {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(45deg,
+      #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background-size: 400%;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.3;
+    animation: holo-border 10s linear infinite;
+    pointer-events: none;
+  }
+}
+
+@keyframes holo-border {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* ─── Light theme (default) ─────────────────────────────────── */
