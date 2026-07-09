@@ -168,7 +168,7 @@ html {
 }
 
 body {
-  font-family: 'Peyda', system-ui, sans-serif;
+  font-family: var(--font-peyda), sans-serif;
   background-color: var(--bg);
   color: var(--fg);
   min-height: 100vh;

@@ -7,7 +7,13 @@ import { cn } from "@/lib/utils"
 import { GlassCard } from "./glass-card"
 
 const GlassModal = DialogPrimitive.Root
-const GlassModalTrigger = DialogPrimitive.Trigger
+const GlassModalTrigger = React.forwardRef<
+  HTMLButtonElement,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Trigger> & { render?: React.ReactElement | ((props: any, state: any) => React.ReactElement) }
+>(({ render, ...props }, ref) => (
+  <DialogPrimitive.Trigger ref={ref} render={render} {...props} />
+))
+GlassModalTrigger.displayName = "GlassModalTrigger"
 const GlassModalPortal = DialogPrimitive.Portal
 
 const GlassModalOverlay = React.forwardRef<

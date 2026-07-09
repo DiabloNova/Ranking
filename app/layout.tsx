@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import localFont from 'next/font/local'
 import './globals.css'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
@@ -66,13 +67,17 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-    other: {
-      'bingbot': 'index, follow',
-      'yandex': 'index, follow',
-    },
   },
   verification: {
     google: 'your-google-site-verification-token',
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'رنکینگ',
   },
   other: {
     'geo.region': 'IR',
@@ -103,6 +108,11 @@ export const viewport: Viewport = {
     { media: '(prefers-color-scheme: dark)', color: '#0a0e1a' },
   ],
 }
+
+const peyda = localFont({
+  src: '../public/fonts/Peyda-Regular.ttf',
+  variable: '--font-peyda',
+})
 
 const organizationSchema = {
   '@context': 'https://schema.org',
@@ -173,40 +183,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
       <head>
-        {/* Core SEO Meta Tags */}
-        <link rel="canonical" href="https://ranking.ir" />
-        <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-        <link rel="alternate" hrefLang="fa-IR" href="https://ranking.ir" />
-        <link rel="alternate" hrefLang="fa" href="https://ranking.ir" />
-        
-        {/* Browser Compatibility */}
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="format-detection" content="telephone=no" />
-        
-        {/* Performance & Mobile SEO */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="رنکینگ" />
-        
-        {/* Font Preloading for Performance */}
-        <link
-          rel="preload"
-          href="/fonts/Peyda-Regular.ttf"
-          as="font"
-          type="font/truetype"
-          crossOrigin="anonymous"
-        />
-
         {/* DNS Prefetch for Performance */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        
-        {/* App Links */}
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#f2faff" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#0a0e1a" media="(prefers-color-scheme: dark)" />
         
         {/* Schema.org Structured Data */}
         <script
@@ -218,7 +197,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className="antialiased min-h-screen flex flex-col">
+      <body className={`${peyda.variable} font-peyda antialiased min-h-screen flex flex-col`}>
         <ThemeProvider
           attribute="data-theme"
           defaultTheme="light"
