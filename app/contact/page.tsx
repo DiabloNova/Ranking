@@ -1,5 +1,5 @@
-import { ContactForm } from '@/components/contact-form'
 import type { Metadata } from 'next'
+import { ContactContent } from '@/components/contact-content'
 
 export const metadata: Metadata = {
   title: 'تماس با ما | رنکینگ - خدمات سئو در ایران',
@@ -34,25 +34,12 @@ const breadcrumbSchema = {
 
 export default function ContactPage() {
   return (
-    <div style={{ backgroundColor: 'var(--bg)', minHeight: '100vh' }}>
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-
-      {/* Header */}
-      <section style={{ padding: '5rem 0 4rem', textAlign: 'center', borderBottom: '1px solid var(--border)' }}>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="font-black" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', color: 'var(--fg)', marginBottom: '1rem' }}>
-            تماس با <span className="text-gradient">ما</span>
-          </h1>
-          <p style={{ fontSize: '1.1rem', color: 'var(--muted)' }}>
-            سوالی دارید؟ تیم ما آماده پاسخ‌گویی است
-          </p>
-        </div>
-      </section>
-
-      <ContactForm />
-    </div>
+      <ContactContent />
+    </>
   )
 }
